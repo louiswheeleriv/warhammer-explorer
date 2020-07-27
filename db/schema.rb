@@ -10,11 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_27_121907) do
+ActiveRecord::Schema.define(version: 2020_07_27_124103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "keyword_associations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "keyword_id", null: false
+    t.uuid "unit_id"
+    t.uuid "unit_model_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["keyword_id"], name: "index_keyword_associations_on_keyword_id"
+    t.index ["unit_id"], name: "index_keyword_associations_on_unit_id"
+    t.index ["unit_model_id"], name: "index_keyword_associations_on_unit_model_id"
+  end
+
+  create_table "keywords", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "unit_model_statlines", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "unit_model_id", null: false
