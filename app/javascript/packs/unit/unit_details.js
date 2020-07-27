@@ -44,6 +44,15 @@ const UNIT_QUERY = gql`
 					}
 				}
 			}
+			images {
+				edges {
+					node {
+						id
+						name
+						description
+					}
+				}
+			}
 		}
 	}
 `;
@@ -53,6 +62,13 @@ function UnitTopLevelDetails(data) {
 	return (
 		<h2>{faction}: {name} ({detachmentSlot})</h2>
 	);
+}
+
+function UnitProfileImage(data) {
+	var profileImage = data.unit.images.edges[0]?.node;
+	if (profileImage == undefined) return null;
+
+	return <img src={'/images/' + profileImage.name} className="unit-image"></img>;
 }
 
 function UnitModelsTable(data) {
@@ -108,6 +124,7 @@ function UnitDetails() {
 	return (
 		<div>
 			{UnitTopLevelDetails(data)}
+			{UnitProfileImage(data)}
 			{UnitModelsTable(data)}
 		</div>
 	);
