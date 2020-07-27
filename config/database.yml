@@ -19,8 +19,8 @@ development:
   encoding: unicode
   database: warhammer_explorer_development
   pool: 5
-  username: postgres
-  password:
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
   timeout: 5000
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -49,6 +49,6 @@ test:
   encoding: unicode
   database: warhammer_explorer_test
   pool: 5
-  username: postgres
-  password:
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
   timeout: 5000
