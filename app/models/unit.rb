@@ -12,4 +12,13 @@
 #
 class Unit < ApplicationRecord
 	has_many :unit_models, dependent: :destroy
+	has_many :keyword_associations, dependent: :destroy
+	has_many :keywords, through: :keyword_associations
+
+	DETACHMENT_SLOTS = [
+		'hq', 'troop', 'elite', 'heavy_support',
+		'fast_attack', 'flyer', 'transport', 'lord_of_war'
+	].freeze
+
+	validates :detachment_slot, inclusion: { in: DETACHMENT_SLOTS }
 end
