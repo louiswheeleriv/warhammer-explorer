@@ -8,5 +8,5 @@
 #  updated_at :datetime         not null
 #
 class Keyword < ApplicationRecord
-
+	has_many :keyword_associations, dependent: :destroy
 end

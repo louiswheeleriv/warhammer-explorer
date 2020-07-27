@@ -10,5 +10,7 @@
 #  updated_at    :datetime         not null
 #
 class KeywordAssociation < ApplicationRecord
-
+	belongs_to :keyword
+	belongs_to :unit
+	belongs_to :unit_model
 end

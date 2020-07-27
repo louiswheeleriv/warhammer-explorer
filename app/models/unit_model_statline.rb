@@ -19,5 +19,5 @@
 #  updated_at         :datetime         not null
 #
 class UnitModelStatline < ApplicationRecord
-
+	belongs_to :unit_model
 end

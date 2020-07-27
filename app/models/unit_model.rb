@@ -9,5 +9,6 @@
 #  updated_at :datetime         not null
 #
 class UnitModel < ApplicationRecord
-
+	belongs_to :unit
+	has_many :unit_model_statlines, dependent: :destroy
 end
