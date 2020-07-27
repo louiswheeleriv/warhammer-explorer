@@ -9,4 +9,6 @@
 #
 class Keyword < ApplicationRecord
 	has_many :keyword_associations, dependent: :destroy
+	has_many :units, through: :keyword_associations
+	has_many :unit_models, through: :keyword_associations
 end

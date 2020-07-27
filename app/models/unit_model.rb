@@ -13,4 +13,6 @@ class UnitModel < ApplicationRecord
 	has_many :unit_model_statlines, dependent: :destroy
 	has_many :keyword_associations, dependent: :destroy
 	has_many :keywords, through: :keyword_associations
+	has_many :image_associations, dependent: :destroy
+	has_many :images, through: :image_associations
 end

@@ -16,14 +16,14 @@ class KeywordAssociation < ApplicationRecord
 
 	validate :exactly_one_association
 
-	LIMITED_ASSOCIATION_FIELDS = [:unit_id, :unit_model_id]
+	LIMITED_ASSOCIATION_FIELDS = [:unit_id, :unit_model_id].freeze
 
 	private
 
 	def exactly_one_association
 		associations = LIMITED_ASSOCIATION_FIELDS.map(&method(:public_send)).compact
 		unless associations.length == 1
-			errors.add(:base, "KeywordAssociation must be related to exactly one of #{LIMITED_ASSOCIATION_FIELDS}")
+			errors.add(:base, "KeywordAssociation must be associated to exactly one of #{LIMITED_ASSOCIATION_FIELDS}")
 		end
 	end
 end
