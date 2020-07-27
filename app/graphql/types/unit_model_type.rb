@@ -6,6 +6,7 @@ module Types
 
 		field :unit_model_statlines, UnitModelStatlineType.connection_type, null: false
 		field :keywords, KeywordType.connection_type, null: false
+		field :images, ImageType.connection_type, null: false
 
 		def unit_model_statlines
 			object.unit_model_statlines
@@ -13,6 +14,10 @@ module Types
 
 		def keywords
 			object.keywords
+		end
+
+		def images
+			object.images
 		end
 
   end

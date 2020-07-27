@@ -8,6 +8,7 @@ module Types
 
 		field :unit_models, UnitModelType.connection_type, null: false
 		field :keywords, KeywordType.connection_type, null: false
+		field :images, ImageType.connection_type, null: false
 
 		def unit_models
 			object.unit_models
@@ -15,6 +16,10 @@ module Types
 
 		def keywords
 			object.keywords
+		end
+
+		def images
+			object.images
 		end
 
   end
