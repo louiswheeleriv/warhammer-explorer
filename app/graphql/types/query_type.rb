@@ -7,8 +7,14 @@ module Types
 			argument :id, ID, required: true
 		end
 
+		field :units, UnitType.connection_type, null: false
+
 		def unit(id:)
 			Unit.find(id)
+		end
+
+		def units
+			Unit.all
 		end
 
   end
