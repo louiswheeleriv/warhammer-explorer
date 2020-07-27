@@ -28,40 +28,43 @@ const listUnitsQuery = gql`
 	}
 `;
 
-function UnitRows() {
+function UnitsTable() {
 	const { loading, error, data } = useQuery(listUnitsQuery);
 
-	if (loading) return <tr><td>Loading...</td></tr>;
-	if (error) return <tr><td>Error!</td></tr>;
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error!</p>;
 
-	return data.units.edges.map(edge => edge.node).map(unitRow);
+	var rows = data.units.edges.map(edge => edge.node).map(unitRow);
+	return (
+		<table>
+			<thead>
+				<tr>
+					<th>Faction</th>
+					<th>Unit</th>
+					<th>Detachment Slot</th>
+				</tr>
+			</thead>
+			<tbody>
+				{rows}
+			</tbody>
+		</table>
+	);
 }
 
 function unitRow(unit) {
 	return (
 		<tr key={unit.id}>
 			<td>{unit.faction}</td>
-			<td>{unit.name}</td>
+			<td><a href={"unit/" + unit.id}>{unit.name}</a></td>
 			<td>{unit.detachmentSlot}</td>
 		</tr>
-	)
+	);
 }
 
 function App() {
   return (
     <ApolloProvider client={client}>
-			<table>
-				<thead>
-					<tr>
-						<th>Faction</th>
-						<th>Unit</th>
-						<th>Detachment Slot</th>
-					</tr>
-				</thead>
-				<tbody>
-					<UnitRows />
-				</tbody>
-			</table>
+			<UnitsTable />
     </ApolloProvider>
   );
 }

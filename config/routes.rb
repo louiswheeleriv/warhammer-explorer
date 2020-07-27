@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
 	root to: 'home#index'
 
+	get 'unit/:name', to: 'unit#show'
+
 	scope :admin do
 		get '/', to: 'admin#index'
 		get 'new_unit', to: 'admin#new_unit'
